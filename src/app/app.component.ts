@@ -13,7 +13,6 @@ export class AppComponent {
   constructor(router: Router, dataLayerService: DataLayerService) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        dataLayerService.addPageViewEvent(event.url)
       }
     });
   }

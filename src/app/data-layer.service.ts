@@ -15,16 +15,7 @@ export class DataLayerService {
     this.initializeDataLayer();
   }
 
-  addPageViewEvent(path: string) {
-    const title = this.title.getTitle();
-    window.dataLayer.push({
-      event: "pageview",
-      page: {
-        path,
-        title
-      }
-    });
-  }
+  addPageViewEvent(path: string) {}
 
   initializeDataLayer() {
     window.dataLayer = window.dataLayer || [];

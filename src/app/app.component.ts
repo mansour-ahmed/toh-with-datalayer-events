@@ -1,6 +1,6 @@
-import { DataLayerService } from "./data-layer.service";
 import { Component } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
+import { DataLayerService } from "./data-layer.service";
 
 @Component({
   selector: "app-root",
@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(router: Router, dataLayerService: DataLayerService) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        dataLayerService.addPageViewEvent(event.url);
+        dataLayerService.addPageViewEvent(event.url)
       }
     });
   }

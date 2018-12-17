@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 
 declare global {
@@ -12,19 +11,22 @@ declare global {
   providedIn: "root"
 })
 export class DataLayerService {
-  constructor(private router: Router, private title: Title) {
-    window.dataLayer = window.dataLayer || [];
+  constructor(private title: Title) {
+    this.initializeDataLayer();
   }
 
-  addPageViewEvent(path?: string, title?: string) {
-    const pagePath = path || this.router.url;
-    const pageTitle = title || this.title.getTitle();
+  addPageViewEvent(path: string) {
+    const title = this.title.getTitle();
     window.dataLayer.push({
       event: "pageview",
       page: {
-        path: pagePath,
-        title: pageTitle
+        path,
+        title
       }
     });
+  }
+
+  initializeDataLayer() {
+    window.dataLayer = window.dataLayer || [];
   }
 }
